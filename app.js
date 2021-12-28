@@ -3,10 +3,10 @@ const QRCode = require('qrcode');
 const { createCanvas, loadImage } = require('canvas');
 
 const url = 'https://cyb.ec/abcdef';
-const logo = 'https://cdn.cybassets.com/s/files/17068/theme/55479/assets/img/1634198956_f4efe642_og_image.jpg?1634198956';
+const logo = 'https://cdn.cybassets.com/s/files/17068/theme/57865/assets/img/navbar_logo.png?1615536658';
 
-const width = 500;
-const logoSize = 150;
+const width = 2000;
+const logoSize = 1200;
 const rectMargin = 0;
 
 const canvas = createCanvas(width, width);
@@ -29,14 +29,15 @@ const ctx = canvas.getContext('2d');
     const logoY = startXY + (logoSize - dy) / 2;
 
     // draw ract
-    const rectX = startXY - rectMargin;
-    const rectY = startXY - rectMargin;
-    const rectSize = logoSize + rectMargin * 2;
+    const rectX = logoX - rectMargin;
+    const rectY = logoY - rectMargin;
+    const rectDX = dx + rectMargin * 2;
+    const rectDY = dy + rectMargin * 2;
     ctx.beginPath();
     ctx.fillStyle = 'white';
     ctx.strokeStyle= 'white';
-    ctx.fillRect(rectX, rectY, rectSize, rectSize);
-    ctx.rect(rectX, rectY, rectSize, rectSize);
+    ctx.fillRect(rectX, rectY, rectDX, rectDY);
+    ctx.rect(rectX, rectY, rectDX, rectDY);
     ctx.stroke();
 
     // print logo
