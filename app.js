@@ -22,17 +22,18 @@ const ctx = canvas.getContext('2d');
   const image = await loadImage(logo);
   const maxSide = Math.max(image.width, image.height);
   const shrinkRatio = logoSize / maxSide;
-  const dx = image.width * shrinkRatio;
-  const dy = image.height * shrinkRatio;
-  const startXY = (width - logoSize) / 2;
-  const logoX = startXY + (logoSize - dx) / 2;
-  const logoY = startXY + (logoSize - dy) / 2;
+  const imageWidth = image.width * shrinkRatio;
+  const imageHeight = image.height * shrinkRatio;
+  const startX = (width - logoSize) / 2;
+  const startY = (width - logoSize) / 2;
+  const logoX = startX + (logoSize - imageWidth) / 2;
+  const logoY = startY + (logoSize - imageHeight) / 2;
 
   // draw ract
   const rectX = logoX - rectMargin;
   const rectY = logoY - rectMargin;
-  const rectDX = dx + rectMargin * 2;
-  const rectDY = dy + rectMargin * 2;
+  const rectDX = imageWidth + rectMargin * 2;
+  const rectDY = imageHeight + rectMargin * 2;
   ctx.beginPath();
   ctx.fillStyle = 'white';
   ctx.strokeStyle = 'white';
@@ -41,7 +42,7 @@ const ctx = canvas.getContext('2d');
   ctx.stroke();
 
   // print logo
-  ctx.drawImage(image, logoX, logoY, dx, dy);
+  ctx.drawImage(image, logoX, logoY, imageWidth, imageHeight);
 
   const buffer = canvas.toBuffer('image/png')
   fs.writeFileSync('./qrcode.png', buffer)
