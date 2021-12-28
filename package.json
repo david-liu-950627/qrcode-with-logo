@@ -1,0 +1,6 @@
+{
+  "devDependencies": {
+    "canvas": "Automattic/node-canvas#master",
+    "qrcode": "^1.5.0"
+  }
+}
